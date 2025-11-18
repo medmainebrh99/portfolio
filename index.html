@@ -1,0 +1,1977 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Portfolio – Mohamed Amine Brahmi</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root {
+      --bg-main: #050816;
+      --bg-card: #0b1020;
+      --bg-card-soft: #13162b;
+      --text-main: #f9fafb;
+      --text-muted: #9ca3af;
+      --accent-red: #e63946;
+      --accent-blue: #3b82f6;
+      --accent-purple: #8b5cf6;
+      --border-soft: rgba(148, 163, 184, 0.25);
+      --radius-lg: 18px;
+      --shadow-card: 0 18px 45px rgba(15, 23, 42, 0.7);
+      --transition-fast: 0.2s ease;
+      --transition-slow: 0.5s ease;
+      --max-width: 1100px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #0b1120 0, #020617 40%, #000 100%);
+      color: var(--text-main);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img, video {
+      max-width: 100%;
+      border-radius: 12px;
+      display: block;
+    }
+
+    /* Scrollbar personnalisée */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--bg-card);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(to bottom, var(--accent-red), var(--accent-blue));
+      border-radius: 10px;
+    }
+
+    /* Layout */
+
+    .page {
+      min-height: 100vh;
+      position: relative;
+    }
+
+    .container {
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    section {
+      padding: 4.5rem 0;
+      position: relative;
+    }
+
+    section + section {
+      border-top: 1px solid rgba(148, 163, 184, 0.15);
+    }
+
+    /* Animation d'entrée */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity var(--transition-slow), transform var(--transition-slow);
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Header */
+
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(14px);
+      background: linear-gradient(
+        to bottom,
+        rgba(15, 23, 42, 0.95),
+        rgba(15, 23, 42, 0.75),
+        transparent
+      );
+      border-bottom: 1px solid rgba(148, 163, 184, 0.18);
+      transition: all var(--transition-fast);
+    }
+
+    .header.scrolled {
+      background: rgba(15, 23, 42, 0.95);
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.85rem 1.5rem;
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .logo-mark {
+      width: 36px;
+      height: 36px;
+      border-radius: 999px;
+      overflow: hidden;
+      background: radial-gradient(circle at 30% 30%, var(--accent-red), var(--accent-blue));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 15px rgba(230, 57, 70, 0.5);
+    }
+
+    .logo-mark img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .logo-text-main {
+      font-family: "Poppins", sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    .logo-text-sub {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .nav {
+      display: flex;
+      gap: 1.5rem;
+      font-size: 0.9rem;
+    }
+
+    .nav a {
+      position: relative;
+      color: var(--text-muted);
+      transition: color var(--transition-fast);
+    }
+
+    .nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -0.4rem;
+      width: 0;
+      height: 2px;
+      border-radius: 999px;
+      background: linear-gradient(to right, var(--accent-red), var(--accent-blue));
+      transition: width var(--transition-fast);
+    }
+
+    .nav a:hover {
+      color: var(--text-main);
+    }
+
+    .nav a:hover::after {
+      width: 100%;
+    }
+
+    /* Sous-titres des sites TEG (Lipos, Cardio, Ortho) */
+    .timeline-site-title {
+      margin-top: 1rem;
+      margin-bottom: 0.4rem;
+      font-weight: 600;
+      font-size: 0.95rem;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      color: var(--accent-blue);
+      display: inline-block;
+      padding-bottom: 0.15rem;
+      border-bottom: 2px solid var(--accent-red);
+    }
+
+    /* Bloc vidéo dans la timeline */
+    .timeline-video {
+      position: relative;
+      width: 100%;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.7);
+      margin-bottom: 0.8rem;
+    }
+
+    /* même ratio pour image ET vidéo (16/9) */
+    .timeline-video-cover img,
+    .timeline-video video {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      display: block;
+    }
+
+    .timeline-video-cover {
+      position: relative;
+      cursor: pointer;
+    }
+
+    .timeline-video-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(15, 23, 42, 0.35),
+        rgba(15, 23, 42, 0.7)
+      );
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    .timeline-video-play {
+      width: 64px;
+      height: 64px;
+      border-radius: 999px;
+      border: 2px solid rgba(248, 250, 252, 0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      background: rgba(15, 23, 42, 0.6);
+    }
+
+    .timeline-video-cover:hover .timeline-video-overlay {
+      background: linear-gradient(
+        to bottom,
+        rgba(59, 130, 246, 0.4),
+        rgba(15, 23, 42, 0.85)
+      );
+      transform: scale(1.01);
+    }
+
+    /* vidéo cachée au début */
+    #pixiiVideo {
+      display: none;
+      background: #000;
+    }
+
+    /* bouton fermer vidéo */
+    .video-close {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      z-index: 5;
+      border: none;
+      border-radius: 999px;
+      padding: 0.25rem 0.5rem;
+      background: rgba(15, 23, 42, 0.8);
+      color: #e5e7eb;
+      cursor: pointer;
+      font-size: 0.9rem;
+      display: none; /* caché au début */
+    }
+
+    .video-close:hover {
+      background: rgba(239, 68, 68, 0.9);
+    }
+
+    .timeline-gallery {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.4rem;
+      margin-top: 0.4rem;
+    }
+
+    .timeline-gallery img {
+      width: 100%;
+      height: 65px;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      cursor: pointer;
+    }
+
+    .timeline-gallery img:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.9);
+    }
+
+    /* Hero */
+
+    .hero {
+      padding-top: 6rem;
+      padding-bottom: 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+      z-index: -1;
+    }
+
+    .hero-grid {
+      display: grid;
+      gap: 2.5rem;
+    }
+
+    @media (min-width: 900px) {
+      .hero-grid {
+        grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+        align-items: center;
+      }
+    }
+
+    .hero-title {
+      font-family: "Poppins", sans-serif;
+      font-weight: 700;
+      font-size: clamp(2.3rem, 3vw, 2.8rem);
+      letter-spacing: 0.04em;
+      margin-bottom: 0.75rem;
+      line-height: 1.2;
+    }
+
+    .hero-highlight {
+      background: linear-gradient(to right, var(--accent-red), var(--accent-blue));
+      -webkit-background-clip: text;
+      color: transparent;
+      position: relative;
+    }
+
+    .hero-subtitle {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      max-width: 34rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-bottom: 1.75rem;
+    }
+
+    .tag {
+      border-radius: 999px;
+      padding: 0.25rem 0.85rem;
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      backdrop-filter: blur(10px);
+      transition: all var(--transition-fast);
+    }
+
+    .tag:hover {
+      border-color: var(--accent-red);
+      color: var(--text-main);
+      transform: translateY(-2px);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .btn {
+      border-radius: 999px;
+      padding: 0.7rem 1.4rem;
+      border: none;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition:
+        transform var(--transition-fast),
+        box-shadow var(--transition-fast),
+        background var(--transition-fast),
+        color var(--transition-fast),
+        border-color var(--transition-fast);
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: linear-gradient(to right, var(--accent-red), var(--accent-blue));
+      color: #f9fafb;
+      box-shadow: 0 16px 40px rgba(59, 130, 246, 0.35);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.5s;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 22px 55px rgba(59, 130, 246, 0.45);
+    }
+
+    .btn-primary:hover::before {
+      left: 100%;
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--text-main);
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-outline::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 100%;
+      background: linear-gradient(to right, var(--accent-red), var(--accent-blue));
+      transition: width var(--transition-fast);
+      z-index: -1;
+    }
+
+    .btn-outline:hover {
+      border-color: transparent;
+      color: white;
+    }
+
+    .btn-outline:hover::before {
+      width: 100%;
+    }
+
+    .btn-icon {
+      font-size: 1.1rem;
+    }
+
+    .hero-card {
+      background: radial-gradient(circle at top left, rgba(248, 113, 113, 0.12), transparent 55%),
+        radial-gradient(circle at bottom right, rgba(59, 130, 246, 0.2), transparent 55%);
+      border-radius: 22px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      padding: 1.5rem;
+      box-shadow: var(--shadow-card);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.03), transparent);
+      z-index: -1;
+    }
+
+    .hero-card-title {
+      font-family: "Poppins", sans-serif;
+      font-size: 0.95rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.4rem;
+    }
+
+    .hero-card-main {
+      font-size: 1.05rem;
+      font-weight: 500;
+      margin-bottom: 0.4rem;
+    }
+
+    .hero-card-sub {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+
+    .hero-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.1rem;
+      font-size: 0.78rem;
+    }
+
+    .hero-stat-label {
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      margin-bottom: 0.15rem;
+    }
+
+    .hero-stat-value {
+      font-family: "Poppins", sans-serif;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    /* Section titles */
+
+    .section-header {
+      margin-bottom: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 1rem;
+    }
+
+    .section-title-block h2 {
+      font-family: "Poppins", sans-serif;
+      font-size: 1.4rem;
+      margin-bottom: 0.3rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-title-block h2::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 40px;
+      height: 3px;
+      background: linear-gradient(to right, var(--accent-red), var(--accent-blue));
+      border-radius: 3px;
+    }
+
+    .section-title-block p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .section-badge {
+      font-size: 0.75rem;
+      border-radius: 999px;
+      padding: 0.2rem 0.7rem;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      color: var(--text-muted);
+    }
+
+    /* Timeline (Expériences) */
+
+    .timeline {
+      position: relative;
+      padding-left: 1rem;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 10px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, rgba(248, 113, 113, 0.7), rgba(59, 130, 246, 0.5));
+      opacity: 0.5;
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-left: 1.7rem;
+      margin-bottom: 1.7rem;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: 3px;
+      top: 0.5rem;
+      width: 14px;
+      height: 14px;
+      border-radius: 999px;
+      background: #020617;
+      border: 2px solid rgba(248, 113, 113, 0.9);
+      box-shadow: 0 0 0 4px rgba(248, 113, 113, 0.12);
+      z-index: 1;
+    }
+
+    .timeline-card {
+      background: radial-gradient(circle at top left, rgba(30, 64, 175, 0.2), transparent 60%),
+        var(--bg-card);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-soft);
+      padding: 1.3rem 1.4rem;
+      box-shadow: var(--shadow-card);
+      transition:
+        transform var(--transition-fast),
+        box-shadow var(--transition-fast),
+        border-color var(--transition-fast);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .timeline-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(to bottom, var(--accent-red), var(--accent-blue));
+      opacity: 0;
+      transition: opacity var(--transition-fast);
+    }
+
+    .timeline-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(248, 113, 113, 0.8);
+      box-shadow: 0 20px 55px rgba(15, 23, 42, 0.9);
+    }
+
+    .timeline-card:hover::before {
+      opacity: 1;
+    }
+
+    .timeline-title-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      align-items: baseline;
+      margin-bottom: 0.3rem;
+    }
+
+    .timeline-role {
+      font-weight: 600;
+    }
+
+    .timeline-company {
+      color: var(--accent-blue);
+      font-size: 0.9rem;
+    }
+
+    .timeline-meta {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 0.6rem;
+    }
+
+    .timeline-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 0.7rem;
+    }
+
+    .badge-tech {
+      font-size: 0.7rem;
+      border-radius: 999px;
+      padding: 0.15rem 0.55rem;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      color: var(--text-muted);
+      transition: all var(--transition-fast);
+    }
+
+    .badge-tech:hover {
+      border-color: var(--accent-blue);
+      color: var(--text-main);
+      transform: translateY(-1px);
+    }
+
+    .timeline-desc {
+      font-size: 0.9rem;
+      color: var(--text-main);
+    }
+
+    .timeline-desc li {
+      margin-bottom: 0.3rem;
+      position: relative;
+      padding-left: 1rem;
+    }
+
+    .timeline-desc li::before {
+      content: '▹';
+      position: absolute;
+      left: 0;
+      color: var(--accent-red);
+    }
+
+    .timeline-media {
+      margin-top: 0.75rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .media-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      border-radius: 999px;
+      border: 1px dashed rgba(148, 163, 184, 0.5);
+      padding: 0.2rem 0.7rem;
+      margin-right: 0.4rem;
+      transition: all var(--transition-fast);
+    }
+
+    .media-pill:hover {
+      border-color: var(--accent-red);
+      color: var(--text-main);
+    }
+
+    /* Projects grid */
+
+    .projects-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+      font-size: 0.8rem;
+    }
+
+    .filter-chip {
+      border-radius: 999px;
+      padding: 0.3rem 0.9rem;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      color: var(--text-muted);
+      cursor: pointer;
+      transition:
+        background var(--transition-fast),
+        border-color var(--transition-fast),
+        color var(--transition-fast);
+    }
+
+    .filter-chip.active {
+      background: linear-gradient(to right, var(--accent-red), var(--accent-blue));
+      border-color: transparent;
+      color: #f9fafb;
+    }
+
+    .filter-chip:hover:not(.active) {
+      border-color: var(--accent-blue);
+      color: var(--text-main);
+    }
+
+    .projects-grid {
+      display: grid;
+      gap: 1.3rem;
+    }
+
+    @media (min-width: 800px) {
+      .projects-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    .project-card {
+      background: var(--bg-card-soft);
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      box-shadow: var(--shadow-card);
+      transition:
+        transform var(--transition-fast),
+        box-shadow var(--transition-fast),
+        border-color var(--transition-fast);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.03), transparent);
+      z-index: -1;
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(59, 130, 246, 0.65);
+      box-shadow: 0 22px 60px rgba(15, 23, 42, 0.95);
+    }
+
+    .project-media {
+      margin-bottom: 0.3rem;
+      background: radial-gradient(circle at top, rgba(59, 130, 246, 0.18), transparent 60%);
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid rgba(15, 23, 42, 0.8);
+      min-height: 130px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-media::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+    }
+
+    .project-type {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+    }
+
+    .project-title {
+      font-family: "Poppins", sans-serif;
+      font-size: 0.98rem;
+      margin-top: 0.1rem;
+    }
+
+    .project-location {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .project-desc {
+      font-size: 0.86rem;
+      color: var(--text-main);
+      flex: 1;
+    }
+
+    .project-tech {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .project-actions {
+      margin-top: 0.4rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .chip-link {
+      font-size: 0.78rem;
+      border-radius: 999px;
+      padding: 0.2rem 0.7rem;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      color: var(--text-muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      transition: all var(--transition-fast);
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .chip-link:hover {
+      border-color: var(--accent-blue);
+      color: var(--text-main);
+      transform: translateY(-1px);
+    }
+
+    /* Contact */
+
+    .contact-card {
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-soft);
+      padding: 1.6rem;
+      box-shadow: var(--shadow-card);
+      display: grid;
+      gap: 1rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.03), transparent);
+      z-index: -1;
+    }
+
+    @media (min-width: 800px) {
+      .contact-card {
+        grid-template-columns: 2fr 1fr;
+        align-items: center;
+      }
+    }
+
+    .contact-subtitle {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 0.7rem;
+    }
+
+    .contact-list {
+  font-size: 0.9rem;
+  color: var(--text-main);
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+}
+
+.contact-icon {
+  margin-top: 0.15rem;
+  font-size: 1rem;
+  color: var(--accent-blue);
+}
+
+.contact-label {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.contact-value {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+
+    /* Footer */
+
+    .footer {
+      padding: 1.5rem 0 2.5rem;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    /* Back to top button */
+    .back-to-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(to right, var(--accent-red), var(--accent-blue));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      transition: all var(--transition-fast);
+      opacity: 0;
+      visibility: hidden;
+      z-index: 99;
+    }
+
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .back-to-top:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Social icons */
+    .social-icons {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .social-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(148, 163, 184, 0.1);
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      transition: all var(--transition-fast);
+    }
+
+    .social-icon:hover {
+      background: linear-gradient(to right, var(--accent-red), var(--accent-blue));
+      border-color: transparent;
+      transform: translateY(-2px);
+    }
+
+    /* Floating particles */
+    .particles {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: -1;
+    }
+
+    .particle {
+      position: absolute;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      animation: float 15s infinite linear;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0) translateX(0);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      90% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100px) translateX(20px);
+        opacity: 0;
+      }
+    }
+
+    /* Modal image plein écran */
+    .image-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
+
+    .image-modal.open {
+      display: flex;
+    }
+
+    .image-modal-content {
+      max-width: 90vw;
+      max-height: 90vh;
+      border-radius: 12px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+    }
+
+    .image-modal img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    .image-modal-close {
+      position: fixed;
+      top: 20px;
+      right: 30px;
+      font-size: 1.6rem;
+      color: #e5e7eb;
+      cursor: pointer;
+    }
+
+    .image-modal-arrow {
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 2.2rem;
+      color: #e5e7eb;
+      cursor: pointer;
+      padding: 0.4rem 0.8rem;
+      background: rgba(15, 23, 42, 0.7);
+      border-radius: 999px;
+      user-select: none;
+    }
+
+    .image-modal-arrow:hover {
+      background: rgba(37, 99, 235, 0.9);
+    }
+
+    .image-modal-prev {
+      left: 25px;
+    }
+
+    .image-modal-next {
+      right: 25px;
+    }
+
+    .video-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.video-modal.open {
+  display: flex;
+}
+
+.video-modal-content {
+  width: min(1000px, 90vw);
+  background: #000;
+  border-radius: 12px;
+  border: 1px solid rgba(148, 163, 184, 0.6);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+  padding: 0;
+}
+
+.video-modal-content video {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+
+    .video-modal-close {
+      position: fixed;
+      top: 20px;
+      right: 30px;
+      font-size: 1.8rem;
+      color: #e5e7eb;
+      cursor: pointer;
+    }
+
+    .video-modal-close:hover {
+      color: #f97373;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="header" id="header">
+      <div class="header-inner">
+        <div class="logo">
+          <div class="logo-mark">
+            <img src="photo.jpg" alt="Photo de Mohamed Amine Brahmi" />
+          </div>
+          <div>
+            <div class="logo-text-main">Mohamed Amine Brahmi</div>
+            <div class="logo-text-sub">Ingénieur Logiciel & DevOps</div>
+          </div>
+        </div>
+
+        <nav class="nav">
+          <a href="#hero">Accueil</a>
+          <a href="#experience">Expériences</a>
+          <a href="#projects">Projets</a>
+          <a href="#volunteering">Bénévolat</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <!-- Hero -->
+      <section id="hero" class="hero">
+        <div class="particles" id="particles"></div>
+        <div class="container hero-grid">
+          <div class="fade-in">
+            <h1 class="hero-title">
+              Ingénieur Logiciel &amp; <span class="hero-highlight">Full-Stack / DevOps</span>
+            </h1>
+           <p class="hero-subtitle">
+  Ingénieur Logiciel diplômé, je conçois et déploie des plateformes web performantes :
+  applications métiers, interfaces 3D et solutions DevOps prêtes pour la production.
+</p>
+
+<div class="hero-tags">
+  <span class="tag">Full-Stack (Spring Boot, .NET Core, Django REST, Angular)</span>
+  <span class="tag">DevOps (Jenkins, Docker, SonarQube, Grafana, Prometheus)</span>
+  <span class="tag">Outils (GitHub, Maven, Keycloak, JUnit, Mockito, VMware, VirtualBox)</span>
+  <span class="tag">3D &amp; WebGL (Three.js)</span>
+  <span class="tag">Bénévolat – Croissant Rouge</span>
+</div>
+
+            <div class="hero-actions">
+              <a href="#projects" class="btn btn-primary">
+                <span class="btn-icon"><i class="fas fa-rocket"></i></span> Voir mes projets
+              </a>
+              <a href="Cv_Mohamed_Amine_Brahmi.pdf" class="btn btn-outline" target="_blank">
+                <span class="btn-icon"><i class="fas fa-file-pdf"></i></span> Télécharger mon CV
+              </a>
+            </div>
+
+<div class="social-icons">
+  <!-- LinkedIn -->
+  <a href="https://www.linkedin.com/in/mohamed-amine-brahmi" target="_blank" class="social-icon">
+    <i class="fab fa-linkedin-in"></i>
+  </a>
+
+  <!-- Email -->
+  <a href="mailto:mohamedamine.brahmi@esprit.tn" class="social-icon">
+    <i class="fas fa-envelope"></i>
+  </a>
+
+  <!-- WhatsApp -->
+  <a href="https://wa.me/21690101741" target="_blank" class="social-icon">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <!-- Facebook -->
+  <a href="https://www.facebook.com/Medamine1919" target="_blank" class="social-icon">
+    <i class="fab fa-facebook-f"></i>
+  </a>
+
+  <!-- Instagram -->
+  <a href="https://www.instagram.com/med_amine_brh/" target="_blank" class="social-icon">
+    <i class="fab fa-instagram"></i>
+  </a>
+</div>
+
+          </div>
+
+          <aside class="hero-card fade-in">
+            <div class="hero-card-title">Projet vedette</div>
+            <div class="hero-card-main">Plateforme 3D de diagnostic – Pixii Motors</div>
+            <div class="hero-card-sub">
+              Visualisation temps réel du scooter électrique Shadow, diagnostic total / pièce, alertes
+              et monitoring via une architecture DevOps complète.
+            </div>
+            <div class="hero-stats">
+              <div>
+                <div class="hero-stat-label">Durée</div>
+                <div class="hero-stat-value">Fév. 2025 – Août 2025</div>
+              </div>
+              <div>
+                <div class="hero-stat-label">Stack clé</div>
+                <div class="hero-stat-value">Django REST · Angular · Three.js ·SQLite· Keycloak·</div>
+              </div>
+              <div>
+                <div class="hero-stat-label">DevOps</div>
+                <div class="hero-stat-value">Jenkins · Docker · CI/CD · Grafana · Prometheus · SonarQube · </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- Expériences -->
+      <section id="experience">
+        <div class="container">
+          <div class="section-header fade-in">
+            <div class="section-title-block">
+              <h2>Expériences professionnelles</h2>
+              <p>Stages d’ingénieur, stages PFE et initiation.</p>
+            </div>
+            <div class="section-badge">Environnement industriel &amp; médical</div>
+          </div>
+
+          <div class="timeline">
+            <!-- Pixii Motors -->
+            <div class="timeline-item fade-in">
+              <div class="timeline-dot"></div>
+              <article class="timeline-card">
+                <div class="timeline-title-row">
+                  <div class="timeline-role">Stage PFE – Ingénieur Logiciel</div>
+                  <div class="timeline-company">Pixii Motors, Technopole El-Ghazela</div>
+                </div>
+                <div class="timeline-meta">Fév. 2025 – Août 2025 · Ariana, Tunisie</div>
+                <div class="timeline-tags">
+                  <span class="badge-tech">Django REST</span>
+                  <span class="badge-tech">Keycloak</span>
+                  <span class="badge-tech">Angular</span>
+                  <span class="badge-tech">Three.js / WebGL</span>
+                  <span class="badge-tech">Docker · Jenkins · Prometheus · Grafana · CI/CD · SonarQube</span>
+                </div>
+                <ul class="timeline-desc">
+                  <li>Développement d’une plateforme 3D de diagnostic total et par pièce pour le scooter Shadow.</li>
+                  <li>Mise en place de scénarios d’animation, isolation des pièces, interactions utilisateur.</li>
+                  <li>Monitoring avec Grafana / Prometheus et pipeline CI/CD complet.</li>
+                </ul>
+
+                <div class="timeline-media">
+                  <!-- Vidéo locale avec cover cliquable -->
+                  <div class="timeline-video" id="pixiiVideoBlock">
+                    <button type="button" class="video-close" id="pixiiVideoClose">✕</button>
+
+                    <div class="timeline-video-cover" id="pixiiVideoCover">
+                      <img src="pfe/1.png" alt="Vidéo démo plateforme 3D Pixii Motors" />
+                      <div class="timeline-video-overlay">
+                        <div class="timeline-video-play">▶</div>
+                      </div>
+                    </div>
+
+                    <video id="pixiiVideo" preload="metadata" controls>
+                      <source src="pfe/pfe_brh.mp4" type="video/mp4" />
+                      Votre navigateur ne supporte pas la vidéo HTML5.
+                    </video>
+                  </div>
+
+                  <!-- Galerie d’images -->
+                  <div class="timeline-gallery">
+                    <img src="pfe/1.png"  alt="Interface 3D Pixii Motors - Vue 1" />
+                    <img src="pfe/2.png"  alt="Interface 3D Pixii Motors - Vue 2" />
+                    <img src="pfe/2222.png"  alt="Interface 3D Pixii Motors - Vue 2222" />
+                    <img src="pfe/3.png"  alt="Interface 3D Pixii Motors - Vue 3" />
+                    <img src="pfe/4.png"  alt="Interface 3D Pixii Motors - Vue 4" />
+                    <img src="pfe/5.png"  alt="Interface 3D Pixii Motors - Vue 5" />
+                    <img src="pfe/6.png"  alt="Interface 3D Pixii Motors - Vue 6" />
+                    <img src="pfe/7.png"  alt="Interface 3D Pixii Motors - Vue 7" />
+                    <img src="pfe/8.png"  alt="Interface 3D Pixii Motors - Vue 8" />
+                    <img src="pfe/10.png" alt="Interface 3D Pixii Motors - Vue 10" />
+                    <img src="pfe/11.png" alt="Interface 3D Pixii Motors - Vue 11" />
+                    <img src="pfe/12.png" alt="Interface 3D Pixii Motors - Vue 12" />
+                    <img src="pfe/13.png" alt="Interface 3D Pixii Motors - Vue 13" />
+                    <img src="pfe/14.png" alt="Interface 3D Pixii Motors - Vue 14" />
+                    <img src="pfe/15.png" alt="Interface 3D Pixii Motors - Vue 15" />
+                    <img src="pfe/16.png" alt="Interface 3D Pixii Motors - Vue 16" />
+                    <img src="pfe/17.png" alt="Interface 3D Pixii Motors - Vue 17" />
+                    <img src="pfe/18.png" alt="Interface 3D Pixii Motors - Vue 18" />
+                    <img src="pfe/19.png" alt="Interface 3D Pixii Motors - Vue 19" />
+                    <img src="pfe/20.png" alt="Interface 3D Pixii Motors - Vue 20" />
+                  </div>
+                </div>
+              </article>
+            </div>
+
+            <!-- TEG -->
+            <div class="timeline-item fade-in">
+              <div class="timeline-dot"></div>
+              <article class="timeline-card">
+                <div class="timeline-title-row">
+                  <div class="timeline-role">Stage d’Ingénieur – Développeur Full-Stack</div>
+                  <div class="timeline-company">TEG Training &amp; Engineering Group</div>
+                </div>
+                <div class="timeline-meta">Juil. 2024 – Sep. 2024 · Tunis Lac1</div>
+
+                <div class="timeline-tags">
+                  <span class="badge-tech">Spring Boot</span>
+                  <span class="badge-tech">Mailing</span>
+                  <span class="badge-tech">Cloudinary</span>
+                  <span class="badge-tech">Angular</span>
+                  <span class="badge-tech">MySQL</span>
+                </div>
+
+                <ul class="timeline-desc">
+                  <li>Développement de trois sites web : CardiologieTunisie, OrthopédieTunisie et LiposuccionTunisie.</li>
+                  <li>Conception des APIs, intégration front-end et gestion des contenus médicaux.</li>
+                  <li>Mise en place de fonctionnalités communes : gestion des services spécialisés, pathologies, rendez-vous, blogs et FAQ.</li>
+                </ul>
+
+                <!-- Liposuccion Tunisie -->
+                <p class="timeline-site-title">Liposuccion Tunisie</p>
+                <div class="timeline-media">
+                  <div class="timeline-gallery">
+                    <img src="stage_ing/Lipos/Picture1.jpg"  alt="LiposuccionTunisie - Vue 1" />
+                    <img src="stage_ing/Lipos/Picture2.jpg"  alt="LiposuccionTunisie - Vue 2" />
+                    <img src="stage_ing/Lipos/Picture3.jpg"  alt="LiposuccionTunisie - Vue 3" />
+                    <img src="stage_ing/Lipos/Picture4.jpg"  alt="LiposuccionTunisie - Vue 4" />
+                    <img src="stage_ing/Lipos/Picture5.jpg"  alt="LiposuccionTunisie - Vue 5" />
+                    <img src="stage_ing/Lipos/Picture6.jpg"  alt="LiposuccionTunisie - Vue 6" />
+                    <img src="stage_ing/Lipos/Picture7.jpg"  alt="LiposuccionTunisie - Vue 7" />
+                    <img src="stage_ing/Lipos/Picture8.jpg"  alt="LiposuccionTunisie - Vue 8" />
+                    <img src="stage_ing/Lipos/Picture9.jpg"  alt="LiposuccionTunisie - Vue 9" />
+                    <img src="stage_ing/Lipos/Picture11.jpg" alt="LiposuccionTunisie - Vue 11" />
+                    <img src="stage_ing/Lipos/Picture12.jpg" alt="LiposuccionTunisie - Vue 12" />
+                    <img src="stage_ing/Lipos/Picture13.jpg" alt="LiposuccionTunisie - Vue 13" />
+                    <img src="stage_ing/Lipos/Picture14.jpg" alt="LiposuccionTunisie - Vue 14" />
+                    <img src="stage_ing/Lipos/Picture15.jpg" alt="LiposuccionTunisie - Vue 15" />
+                    <img src="stage_ing/Lipos/Picture16.jpg" alt="LiposuccionTunisie - Vue 16" />
+                    <img src="stage_ing/Lipos/Picture17.jpg" alt="LiposuccionTunisie - Vue 17" />
+                  </div>
+                </div>
+
+                <!-- Cardiologie Tunisie -->
+                <p class="timeline-site-title">Cardiologie Tunisie</p>
+                <div class="timeline-media">
+                  <div class="timeline-gallery">
+                    <img src="stage_ing/Cardio/Picture22.jpg" alt="CardiologieTunisie - Vue 1" />
+                    <img src="stage_ing/Cardio/Picture23.jpg" alt="CardiologieTunisie - Vue 2" />
+                    <img src="stage_ing/Cardio/Picture24.jpg" alt="CardiologieTunisie - Vue 3" />
+                    <img src="stage_ing/Cardio/Picture25.jpg" alt="CardiologieTunisie - Vue 4" />
+                    <img src="stage_ing/Cardio/Picture26.jpg" alt="CardiologieTunisie - Vue 5" />
+                    <img src="stage_ing/Cardio/Picture27.jpg" alt="CardiologieTunisie - Vue 6" />
+                  </div>
+                </div>
+
+                <!-- Orthopédie Tunisie -->
+                <p class="timeline-site-title">Orthopédie Tunisie</p>
+                <div class="timeline-media">
+                  <div class="timeline-gallery">
+                    <img src="stage_ing/Ortho/Picture1.jpg"  alt="OrthopédieTunisie - Vue 1" />
+                    <img src="stage_ing/Ortho/Picture2.jpg"  alt="OrthopédieTunisie - Vue 2" />
+                    <img src="stage_ing/Ortho/Picture3.jpg"  alt="OrthopédieTunisie - Vue 3" />
+                    <img src="stage_ing/Ortho/Picture4.jpg"  alt="OrthopédieTunisie - Vue 4" />
+                    <img src="stage_ing/Ortho/Picture5.jpg"  alt="OrthopédieTunisie - Vue 5" />
+                    <img src="stage_ing/Ortho/Picture7.jpg"  alt="OrthopédieTunisie - Vue 6" />
+                    <img src="stage_ing/Ortho/Picture8.jpg"  alt="OrthopédieTunisie - Vue 7" />
+                    <img src="stage_ing/Ortho/Picture9.jpg"  alt="OrthopédieTunisie - Vue 8" />
+                    <img src="stage_ing/Ortho/Picture10.jpg" alt="OrthopédieTunisie - Vue 9" />
+                  </div>
+                </div>
+              </article>
+            </div>
+
+            <!-- Ahwa Solution -->
+            <div class="timeline-item fade-in">
+              <div class="timeline-dot"></div>
+              <article class="timeline-card">
+                <div class="timeline-title-row">
+                  <div class="timeline-role">Stage d’Initiation – Développeur</div>
+                  <div class="timeline-company">Ahwa Solution</div>
+                </div>
+                <div class="timeline-meta">Juin 2023 – Juil. 2023 · Sidi Bouzid</div>
+                <div class="timeline-tags">
+                  <span class="badge-tech">Spring Boot</span>
+                  <span class="badge-tech">Angular</span>
+                  <span class="badge-tech">MySQL</span>
+                </div>
+                <ul class="timeline-desc">
+                  <li>Application de gestion du personnel et des stagiaires.</li>
+                  <li>Mise en place du CRUD, authentification basique et reporting simple.</li>
+                </ul>
+                <div class="timeline-media">
+                  <div class="timeline-gallery">
+                    <img src="stage_init/11.png"  alt="stage_init - Vue 1" />
+                    <img src="stage_init/22.png"  alt="stage_init - Vue 2" />
+                    <img src="stage_init/33.png"  alt="stage_init - Vue 3" />
+                  </div>
+                </div>
+              </article>
+            </div>
+
+            <!-- Eurorepar -->
+            <div class="timeline-item fade-in">
+              <div class="timeline-dot"></div>
+              <article class="timeline-card">
+                <div class="timeline-title-row">
+                  <div class="timeline-role">Stage PFE – Robotique</div>
+                  <div class="timeline-company">Eurorepar Car Service Tunisie</div>
+                </div>
+                <div class="timeline-meta">Fév. 2022 – Juin 2022 · Sidi Bouzid</div>
+                <div class="timeline-tags">
+                  <span class="badge-tech">Arduino</span>
+                  <span class="badge-tech">C++</span>
+                  <span class="badge-tech">Robotique</span>
+                </div>
+                <ul class="timeline-desc">
+                  <li>Conception et réalisation d’un robot de désinfection autonome pour garage.</li>
+                  <li>Contrôle de mouvement, gestion de capteurs et logique embarquée.</li>
+                </ul>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Projets académiques & perso -->
+      <section id="projects">
+        <div class="container">
+          <div class="section-header fade-in">
+            <div class="section-title-block">
+              <h2>Projets académiques &amp; personnels</h2>
+              <p>Une sélection de projets DevOps, full-stack et indépendants.</p>
+            </div>
+            <div class="section-badge">ESPRIT · Projets indépendants</div>
+          </div>
+
+    
+
+          <div class="projects-grid">
+            <!-- DevOps – Esprit -->
+            <article class="project-card fade-in">
+                <div class="project-media">
+          <img src="bénévolat&projet/CICD.png" alt="DevOps– Interface principale" />
+            </div>
+     
+              <div class="project-type">Projet DevOps – Esprit</div>
+              <div class="project-title">Déploiement automatisé Spring Boot / Angular</div>
+              <div class="project-location">Esprit, Tunis</div>
+              <p class="project-desc">
+                Mise en place d’un pipeline CI/CD pour une application Spring Boot / Angular
+                avec intégration de SonarQube, Docker, Prometheus et Grafana.
+              </p>
+              <div class="project-tech">
+                Jenkins · Docker · SonarQube · Nexus · Prometheus · Grafana · CI/CD
+              </div>
+              <div class="project-actions">
+              </div>
+            </article>
+
+            <!-- AmineAero – Projet indépendant -->
+      <!-- AmineAero – Projet indépendant -->
+<article class="project-card fade-in">
+  <div class="project-media">
+    <img src="bénévolat&projet/aaaa.png" alt="AmineAero – Interface principale" />
+  </div>
+  <div class="project-type">Projet indépendant</div>
+  <div class="project-title">AmineAero – Gestion des compagnies aériennes</div>
+  <div class="project-location">Tunis</div>
+  <p class="project-desc">
+    Plateforme complète pour gérer compagnies, avions, aéroports, vols, équipages,
+    salaires, retraites, voyageurs et réclamations.
+  </p>
+  <div class="project-tech">
+    Spring Boot · Spring Security · Angular · JWT · Stripe API · Mapbox · Cloudinary · JUnit · Mockito · Cloudinary · Spring Security · Spring Scheduler . AOP · Leaflet ·
+  </div>
+  <div class="project-actions">
+    <button type="button" class="chip-link" id="amineVideoTrigger">
+      <i class="fas fa-video"></i> Voir la vidéo
+    </button>
+  </div>
+</article>
+
+<!-- Care4elders -->
+<article class="project-card fade-in">
+  <div class="project-media">
+    <img src="bénévolat&projet/Care.png" alt="Care – Interface principale" />
+  </div>
+  <div class="project-type">Projet académique</div>
+  <div class="project-title">Care4elders – Plateforme dédiée aux seniors</div>
+  <div class="project-location">Esprit, Tunis</div>
+  <p class="project-desc">
+    Application web dédiée aux personnes âgées : gestion des établissements,
+    médecins, patients, infirmiers, rendez-vous et module morgue.
+  </p>
+   <div class="project-tech">
+    Spring Boot · Angular · MySQL · Mapbox ·Leaflet · PDF / QR Code · JUnit · Mockito · Cloudinary · Spring Security · Spring Scheduler . AOP ·
+    </div>
+
+  <div class="project-actions">
+    <button type="button" class="chip-link" id="careImagesTrigger">
+      <i class="fas fa-image"></i> Voir les images
+    </button>
+  </div>
+
+  <!-- Galerie cachée pour Care4elders (utilisée par le modal) -->
+  <div class="timeline-gallery" id="careGallery" style="display: none;">
+    <img id="careImg1" src="bénévolat&projet/Care/1.png" alt="Care4elders - Vue 1" />
+    <img src="bénévolat&projet/Care/3.png" alt="Care4elders - Vue 2" />
+    <img src="bénévolat&projet/Care/4.png" alt="Care4elders - Vue 3" />
+  </div>
+</article>
+
+
+        
+<!-- RestoRatings -->
+<article class="project-card fade-in">
+  <div class="project-media">
+    <img src="bénévolat&projet/symfony.png" alt="RestoRatings – Interface principale" />
+  </div>
+  <div class="project-type">Projet académique</div>
+  <div class="project-title">RestoRatings – Plateforme d’achat &amp; notation</div>
+  <div class="project-location">Esprit, Tunis</div>
+  <p class="project-desc">
+    Plateforme d’achat en ligne et gestion des plats / commandes avec une partie web
+    (Symfony) et une application desktop (JavaFX).
+  </p>
+  <div class="project-tech">
+    Symfony · JavaFX · MySQL
+  </div>
+  <div class="project-actions">
+    <button type="button" class="chip-link" id="restoVideoTrigger">
+      <i class="fas fa-video"></i> Voir la vidéo
+    </button>
+  </div>
+</article>
+
+
+          </div>
+        </div>
+      </section>
+
+      <!-- Bénévolat -->
+      <section id="volunteering">
+        <div class="container">
+          <div class="section-header fade-in">
+            <div class="section-title-block">
+              <h2>Activités bénévoles</h2>
+              <p>Engagement humanitaire à travers le développement logiciel.</p>
+            </div>
+            <div class="section-badge">Croissant-Rouge Tunisien</div>
+          </div>
+
+    <article class="contact-card fade-in">
+  <div>
+    <h3 class="project-title">Développeur Bénévole Full-Stack – Croissant-Rouge Tunisien</h3>
+    <p class="contact-subtitle">
+      Développement de la plateforme web « Croissant Rouge » – secteur régional de Sidi Bouzid.
+    </p>
+    <ul class="project-desc">
+      <li>Conception et implémentation des modules : Programmes, Événements, Activités, Utilisateurs…</li>
+      <li>Gestion de l’authentification (JWT), cartes interactives (Leaflet) et upload d’images (Cloudinary).</li>
+      <li>Déploiement containerisé avec Docker et intégration mailing.</li>
+    </ul>
+    <div class="project-actions" style="margin-top: 0.7rem;">
+      <button type="button" class="chip-link" id="crtVideoTrigger">
+        <i class="fas fa-video"></i> Vidéo de démo
+      </button>
+    </div>
+  </div>
+  <div>
+    <div class="project-media">
+      <img src="bénévolat&projet/crt.png" alt="Plateforme Croissant Rouge – Interface principale" />
+    </div>
+  </div>
+</article>
+
+        </div>
+      </section>
+
+      <!-- Contact -->
+      <section id="contact">
+        <div class="container">
+          <div class="section-header fade-in">
+            <div class="section-title-block">
+              <h2>Contact</h2>
+              <p>Discutons de votre prochain projet ou opportunité.</p>
+            </div>
+            <div class="section-badge">Disponible pour opportunités</div>
+          </div>
+
+          <div class="contact-card fade-in">
+            <div>
+              <p class="contact-subtitle">
+Je suis à la recherche d’opportunités professionnelles en tant qu’ingénieur Full-Stack / DevOps,
+ainsi que de missions freelance.
+              </p>
+              <div class="hero-actions">
+                <a href="mailto:mohamedamine.brahmi@esprit.tn" class="btn btn-primary">
+                  <i class="fas fa-envelope"></i> Me contacter par e-mail
+                </a>
+                <a href="https://www.linkedin.com/in/mohamed-amine-brahmi" target="_blank" class="btn btn-outline">
+                  <i class="fab fa-linkedin-in"></i> Voir mon LinkedIn
+                </a>
+              </div>
+            </div>
+<div class="contact-list">
+  <div class="contact-item">
+    <i class="fas fa-envelope contact-icon"></i>
+    <div>
+      <div class="contact-label">Email</div>
+      <div class="contact-value">mohamedamine.brahmi@esprit.tn</div>
+    </div>
+  </div>
+
+  <div class="contact-item">
+    <i class="fas fa-phone contact-icon"></i>
+    <div>
+      <div class="contact-label">Téléphone</div>
+      <div class="contact-value">+216 90 101 741</div>
+    </div>
+  </div>
+
+  <div class="contact-item">
+    <i class="fas fa-map-marker-alt contact-icon"></i>
+    <div>
+      <div class="contact-label">Localisation</div>
+      <div class="contact-value">Tunis, Tunisie</div>
+    </div>
+  </div>
+</div>
+
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        © <span id="year"></span> Mohamed Amine Brahmi – Portfolio.
+      </footer>
+    </main>
+  </div>
+
+  <!-- Modal image plein écran -->
+  <div class="image-modal" id="imageModal">
+    <span class="image-modal-close" id="imageModalClose">&times;</span>
+
+    <span class="image-modal-arrow image-modal-prev" id="imageModalPrev">&#10094;</span>
+    <span class="image-modal-arrow image-modal-next" id="imageModalNext">&#10095;</span>
+
+    <div class="image-modal-content">
+      <img id="imageModalImg" src="" alt="Preview" />
+    </div>
+  </div>
+
+  <!-- Modal vidéo AmineAero -->
+  <div class="video-modal" id="videoModal">
+    <span class="video-modal-close" id="videoModalClose">&times;</span>
+    <div class="video-modal-content">
+      <video id="videoModalVideo" controls></video>
+    </div>
+  </div>
+
+  <div class="back-to-top" id="backToTop">
+    <i class="fas fa-arrow-up"></i>
+  </div>
+
+  <script>
+    // Mettre à jour l'année automatiquement
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Animation d'apparition au défilement
+    const fadeElements = document.querySelectorAll('.fade-in');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+    fadeElements.forEach(el => observer.observe(el));
+
+    // Header scroll effect
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) header.classList.add('scrolled');
+      else header.classList.remove('scrolled');
+    });
+
+    // Back to top button
+    const backToTopBtn = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) backToTopBtn.classList.add('visible');
+      else backToTopBtn.classList.remove('visible');
+    });
+    backToTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Particules
+    function createParticles() {
+      const particlesContainer = document.getElementById('particles');
+      const particleCount = 20;
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('particle');
+        const size = Math.random() * 5 + 1;
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        particle.style.left = `${Math.random() * 100}%`;
+        particle.style.top = `${Math.random() * 100}%`;
+        particle.style.animationDelay = `${Math.random() * 15}s`;
+        particlesContainer.appendChild(particle);
+      }
+    }
+    createParticles();
+
+    // Filtres de projets (placeholder)
+    const filterChips = document.querySelectorAll('.filter-chip');
+    filterChips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        filterChips.forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+      });
+    });
+
+    // Lightbox images
+    const galleryImages = document.querySelectorAll('.timeline-gallery img');
+    const galleryArray = Array.from(galleryImages);
+    const imageModal = document.getElementById('imageModal');
+    const imageModalImg = document.getElementById('imageModalImg');
+    const imageModalClose = document.getElementById('imageModalClose');
+    const imageModalPrev = document.getElementById('imageModalPrev');
+    const imageModalNext = document.getElementById('imageModalNext');
+    let currentImageIndex = 0;
+
+    function showImage(index) {
+      if (galleryArray.length === 0) return;
+      if (index < 0) index = galleryArray.length - 1;
+      if (index >= galleryArray.length) index = 0;
+      currentImageIndex = index;
+      imageModalImg.src = galleryArray[currentImageIndex].src;
+      imageModal.classList.add('open');
+    }
+
+    galleryArray.forEach((img, idx) => {
+      img.addEventListener('click', () => showImage(idx));
+    });
+// Bouton "Voir les images" pour Care4elders
+const careImagesTrigger = document.getElementById('careImagesTrigger');
+
+if (careImagesTrigger) {
+  const careFirstImg = document.getElementById('careImg1');
+
+  careImagesTrigger.addEventListener('click', () => {
+    if (!careFirstImg) return;
+    const index = galleryArray.indexOf(careFirstImg);
+    if (index !== -1) {
+      showImage(index); // ouvre le modal sur la première image de Care4elders
+    }
+  });
+}
+
+    imageModalNext.addEventListener('click', (e) => {
+      e.stopPropagation();
+      showImage(currentImageIndex + 1);
+    });
+
+    imageModalPrev.addEventListener('click', (e) => {
+      e.stopPropagation();
+      showImage(currentImageIndex - 1);
+    });
+
+    imageModalClose.addEventListener('click', () => {
+      imageModal.classList.remove('open');
+    });
+
+    imageModal.addEventListener('click', (e) => {
+      if (e.target === imageModal) imageModal.classList.remove('open');
+    });
+
+    window.addEventListener('keydown', (e) => {
+      if (!imageModal.classList.contains('open')) return;
+      if (e.key === 'ArrowRight') showImage(currentImageIndex + 1);
+      else if (e.key === 'ArrowLeft') showImage(currentImageIndex - 1);
+      else if (e.key === 'Escape') imageModal.classList.remove('open');
+    });
+
+    window.addEventListener('wheel', (e) => {
+      if (!imageModal.classList.contains('open')) return;
+      if (e.deltaY > 0) showImage(currentImageIndex + 1);
+      else if (e.deltaY < 0) showImage(currentImageIndex - 1);
+    });
+
+    // Lecture vidéo locale (cover -> vidéo) + bouton fermer (Pixii)
+    const pixiiCover = document.getElementById('pixiiVideoCover');
+    const pixiiVideo = document.getElementById('pixiiVideo');
+    const pixiiClose = document.getElementById('pixiiVideoClose');
+
+    if (pixiiCover && pixiiVideo && pixiiClose) {
+      pixiiVideo.style.display = 'none';
+      pixiiClose.style.display = 'none';
+
+      pixiiCover.addEventListener('click', () => {
+        pixiiCover.style.display = 'none';
+        pixiiVideo.style.display = 'block';
+        pixiiClose.style.display = 'block';
+        pixiiVideo.play();
+      });
+
+      pixiiClose.addEventListener('click', () => {
+        pixiiVideo.pause();
+        pixiiVideo.currentTime = 0;
+        pixiiVideo.style.display = 'none';
+        pixiiClose.style.display = 'none';
+        pixiiCover.style.display = 'block';
+      });
+    }
+
+         // Modal vidéo (AmineAero + RestoRatings + Croissant Rouge)
+    const videoModal = document.getElementById('videoModal');
+    const videoModalVideo = document.getElementById('videoModalVideo');
+    const videoModalClose = document.getElementById('videoModalClose');
+
+    const amineVideoTrigger = document.getElementById('amineVideoTrigger');
+    const restoVideoTrigger = document.getElementById('restoVideoTrigger');
+    const crtVideoTrigger   = document.getElementById('crtVideoTrigger');
+
+    function openVideoModal(src) {
+      if (!videoModal || !videoModalVideo) return;
+      videoModalVideo.src = src;
+      videoModal.classList.add('open');
+      videoModalVideo.play();
+    }
+
+    function closeVideoModal() {
+      if (!videoModal || !videoModalVideo) return;
+      videoModalVideo.pause();
+      videoModalVideo.currentTime = 0;
+      videoModal.classList.remove('open');
+      videoModalVideo.src = '';
+    }
+
+    // Bouton AmineAero
+    if (amineVideoTrigger) {
+      amineVideoTrigger.addEventListener('click', (e) => {
+        e.preventDefault();
+        openVideoModal('bénévolat&projet/amine_areo.mp4');
+      });
+    }
+
+    // Bouton RestoRatings
+    if (restoVideoTrigger) {
+      restoVideoTrigger.addEventListener('click', (e) => {
+        e.preventDefault();
+        openVideoModal('bénévolat&projet/Symfony.mp4'); // <-- si tu veux Symfony ici, remets Symfony.mp4
+      });
+    }
+
+    // Bouton Croissant Rouge
+    if (crtVideoTrigger) {
+      crtVideoTrigger.addEventListener('click', (e) => {
+        e.preventDefault();
+        openVideoModal('bénévolat&projet/CRT_SBZ.mp4');
+      });
+    }
+
+    // Fermeture de la modale vidéo
+    if (videoModal && videoModalClose) {
+      videoModalClose.addEventListener('click', closeVideoModal);
+
+      videoModal.addEventListener('click', (e) => {
+        if (e.target === videoModal) closeVideoModal();
+      });
+
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && videoModal.classList.contains('open')) {
+          closeVideoModal();
+        }
+      });
+    }
+
+</script>
+ </body>
+  </html>
